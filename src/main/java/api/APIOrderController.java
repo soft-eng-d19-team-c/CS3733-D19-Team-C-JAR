@@ -2,6 +2,7 @@ package api;
 
 import base.EnumScreenType;
 import com.jfoenix.controls.JFXTextArea;
+import com.jfoenix.controls.JFXTextField;
 import controller.Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,7 +13,7 @@ import java.util.ResourceBundle;
 
 public class APIOrderController extends Controller implements Initializable {
     @FXML
-    private JFXTextArea patientID;
+    private JFXTextField patientID;
     @FXML private JFXTextArea prescriptionDescription;
 
     @Override

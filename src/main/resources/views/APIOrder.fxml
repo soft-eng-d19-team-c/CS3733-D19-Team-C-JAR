@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
@@ -14,22 +16,18 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@app.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="api.APIOrderController">
     <children>
+          <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Order a Prescription">
+              <font>
+                  <Font size="80.0" />
+              </font>
+          </Label>
         <VBox alignment="CENTER" layoutX="140.0" layoutY="26.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="200.0">
             <children>
-                <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Order a Prescription">
-                    <font>
-                        <Font size="80.0" />
-                    </font>
-                </Label>
-                <!--<fx:include fx:id="autoCompleteText" source="autocompleteSearchBar.fxml" />-->
-                <JFXTextArea fx:id="patientID" focusColor="#b82020" promptText="Patient ID">
-                    <VBox.margin>
-                        <Insets left="20.0" right="20.0" />
-                    </VBox.margin>
-                    <font>
-                        <Font size="40.0" />
-                    </font>
-                </JFXTextArea>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <JFXTextField fx:id="patientID" promptText="Patient ID" />
+                   <JFXComboBox promptText="Type of Drug" />
+               </children></HBox>
                 <JFXTextArea fx:id="prescriptionDescription" focusColor="#b82020" promptText="Prescription Description">
                     <font>
                         <Font size="40.0" />
