@@ -22,9 +22,5 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         APIMain apiMain = new APIMain();
         apiMain.run(0,0,1000,1000,null,null,null);
-//        apiMain.addPatient("Rivers Cuomo");
-        apiMain.addDrug("Crack", "do a lot");
-        apiMain.addPharmer("Matt Sharp", "Bassist");
-        apiMain.addPrescription(1, 1, 1);
     }
 }

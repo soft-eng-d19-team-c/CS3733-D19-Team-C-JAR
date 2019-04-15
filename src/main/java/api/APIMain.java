@@ -11,15 +11,12 @@ package api;
 import base.Database;
 import base.EnumScreenType;
 import base.Facade;
-import base.Main;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.URISyntaxException;
+import java.io.*;
 import java.net.URL;
 import java.sql.*;
 
@@ -71,7 +68,6 @@ public class APIMain {
         connectToDatabase();
         buildDatabase();
 
-
         primaryStage = new Stage();
 
         try {
@@ -92,6 +88,7 @@ public class APIMain {
 
     }
 
+
     private void connectToDatabase(){
         System.out.println("Attempting to connect to the embedded database...");
         try {
@@ -111,7 +108,8 @@ public class APIMain {
         }
         System.out.println("Successfully connected to database");
     }
-    
+
+    @SuppressWarnings("Dupilcates")
     private void buildDatabase(){
         // drugs
         String drugs1 = "create table DRUGS (ID int generated always as identity, title varchar(255), description varchar(1000))";
@@ -166,6 +164,137 @@ public class APIMain {
                 e.printStackTrace();
             }
         }
+
+        System.out.println("Attempting to import patients...");
+        URL csvFile = getClass().getResource("/data/patients.csv");
+        BufferedReader br = null;
+        String line;
+        String cvsSplitBy = ",";
+        try {
+            br = new BufferedReader(new InputStreamReader(csvFile.openStream()));
+            br.readLine(); // throw away header
+            while ((line = br.readLine()) != null) {
+                String[] nodeData = line.split(cvsSplitBy); // split by comma
+                // get fields
+                String name = nodeData[0];
+                // prepare the insert sql statement with room to insert variables
+                PreparedStatement ps = null;
+                String sqlCmd = "insert into Patients (Name) values (?)";
+                try {
+                    ps = APIMain.connection.prepareStatement(sqlCmd);
+                    ps.setString(1, name);
+                    ps.execute();
+                } catch (SQLException e) {
+                    if (e.getSQLState().equals("23505")) { // duplicate key, update instead of insert
+                    } else {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+
+        System.out.println("Attempting to import drugs...");
+        csvFile = getClass().getResource("/data/drugs.csv");
+        br = null;
+        try {
+            br = new BufferedReader(new InputStreamReader(csvFile.openStream()));
+            br.readLine(); // throw away header
+            while ((line = br.readLine()) != null) {
+                String[] nodeData = line.split(cvsSplitBy); // split by comma
+                // get fields
+                String title = nodeData[0];
+                String description = nodeData[1];
+                // prepare the insert sql statement with room to insert variables
+                PreparedStatement ps = null;
+                String sqlCmd = "insert into drugs (TITLE, DESCRIPTION) values (?,?)";
+                try {
+                    ps = APIMain.connection.prepareStatement(sqlCmd);
+                    ps.setString(1, title);
+                    ps.setString(2, description);
+                    ps.execute();
+                } catch (SQLException e) {
+                    if (e.getSQLState().equals("23505")) { // duplicate key, update instead of insert
+                    } else {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        System.out.println("Attempting to import staff...");
+        csvFile = getClass().getResource("/data/pharmers.csv");
+        br = null;
+        try {
+            br = new BufferedReader(new InputStreamReader(csvFile.openStream()));
+            br.readLine(); // throw away header
+            while ((line = br.readLine()) != null) {
+                String[] nodeData = line.split(cvsSplitBy); // split by comma
+                // get fields
+                String name = nodeData[0];
+                String title = nodeData[1];
+                // prepare the insert sql statement with room to insert variables
+                PreparedStatement ps = null;
+                String sqlCmd = "insert into PHARMERS (NAME, TITLE) values (?,?)";
+                try {
+                    ps = APIMain.connection.prepareStatement(sqlCmd);
+                    ps.setString(1, name);
+                    ps.setString(2, title);
+                    ps.execute();
+                } catch (SQLException e) {
+                    if (e.getSQLState().equals("23505")) { // duplicate key, update instead of insert
+                    } else {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+
+        System.out.println(APIDrug.getID("Vicodin"));
+        System.out.println(APIPatient.getID("Rivers Cuomo"));
+        System.out.println(APIPharmer.getID("Buddy Holly"));
+
+
+       if(!APIPrescription.addPrescription(6, 1, 1)){
+           System.out.println("failed");
+       }
     }
 
 
