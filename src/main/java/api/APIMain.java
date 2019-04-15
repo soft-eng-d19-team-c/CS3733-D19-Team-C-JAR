@@ -287,14 +287,14 @@ public class APIMain {
         }
 
 
-        System.out.println(APIDrug.getID("Vicodin"));
-        System.out.println(APIPatient.getID("Rivers Cuomo"));
-        System.out.println(APIPharmer.getID("Buddy Holly"));
-
-
-       if(!APIPrescription.addPrescription(6, 1, 1)){
-           System.out.println("failed");
-       }
+//        System.out.println(APIDrug.getID("Vicodin"));
+//        System.out.println(APIPatient.getID("Rivers Cuomo"));
+//        System.out.println(APIPharmer.getID("Buddy Holly"));
+//
+//
+//       if(!APIPrescription.addPrescription(6, 1, 1)){
+//           System.out.println("failed");
+//       }
     }
 
 
