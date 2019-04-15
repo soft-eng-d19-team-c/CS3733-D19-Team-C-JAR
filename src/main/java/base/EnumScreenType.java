@@ -36,7 +36,14 @@ public enum EnumScreenType {
     GIFTSTORESERVICETABLE("/views/giftStoreRequestTable.fxml"),
     RELIGIOUSSERVICETABLE("/views/religiousRequestTable.fxml"),
     FLORISTSERVICETABLE("/views/floristServiceRequestTable.fxml"),
-    WELCOME("/views/screensaver.fxml");
+    WELCOME("/views/screensaver.fxml"),
+    // Api stuff
+    APIMain("/views/APIMain.fxml"),
+    APIOrder("/views/APIOrder.fxml"),
+    APIProvide("/views/APIProvide.fxml");
+
+
+
 
     protected String path;
 

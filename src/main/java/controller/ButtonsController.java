@@ -1,5 +1,6 @@
 package controller;
 
+import api.APIMain;
 import base.EnumScreenType;
 import base.Main;
 import javafx.event.ActionEvent;
@@ -30,7 +31,7 @@ public class ButtonsController extends Controller implements Initializable {
 
     //partial for return button (akes you back to previous page)
     public void returnButtonClick(ActionEvent actionEvent) {
-        Main.screenController.goBack();
+        APIMain.screenController.goBack();
     }
 
 }

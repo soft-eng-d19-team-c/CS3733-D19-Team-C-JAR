@@ -1,5 +1,8 @@
 package base;
 
+import api.APIMain;
+import javafx.application.Application;
+import javafx.stage.Stage;
 import model.User;
 
 /**
@@ -7,16 +10,17 @@ import model.User;
  * This class also spawns the FXML application.
  * @author Ryan LaMarche
  */
-public class Main {
+public class Main extends Application {
     public static Facade screenController;
     public static Database database;
     public static User user;
     public static ApplicationInformation info;
-    public static void main(String[] args) {
-        database = new Database(true, false);
-        user = new User("staff");
-        info = new ApplicationInformation("CHALL007L1");
-        MainFXML app = new MainFXML();
-        app.main(args);
+    public static void main(String[] args){
+        launch(args);
+    }
+
+    public void start(Stage primaryStage) throws Exception {
+        APIMain APIMain = new APIMain();
+        APIMain.run(0,0,900,900,null,null,null);
     }
 }
