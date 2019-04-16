@@ -5,6 +5,7 @@ import base.EnumScreenType;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
+import com.jfoenix.controls.JFXTextField;
 import controller.Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,7 +17,7 @@ import java.util.ResourceBundle;
 public class APIProvideController extends Controller implements Initializable {
 
     @FXML
-    JFXTextArea getPatientID;
+    JFXTextField getPatientID;
     @FXML
     JFXButton submit;
     @FXML
