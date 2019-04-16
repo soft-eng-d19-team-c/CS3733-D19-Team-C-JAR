@@ -15,51 +15,18 @@ public class APIPrescription {
         this.pharmerID = pharmerID;
     }
 
-    public static boolean addPrescription(int drugID, int patientID, int pharmerID){
+    public static boolean addPrescription(String drugID, String patientID){
         boolean executed = false;
-
-        String sqlCmd = "insert into PRESCRITPIONS (drugid, patientsid, pharmerid) values (?,?,?)";
+        String sqlCmd = "insert into PRESCRITPIONS (drugid, patientsid) values (?,?)";
         try {
             PreparedStatement ps = APIMain.connection.prepareStatement(sqlCmd);
-            ps.setInt(1, drugID);
-            ps.setInt(2, patientID);
-            ps.setInt(3, pharmerID);
-            executed = ps.execute(); //returns a boolean
+            ps.setString(1, drugID);
+            ps.setString(2, patientID);
+            return ps.execute(); //returns a boolean
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return executed;
     }
-
-    public static boolean addPrescription(String drugIDstr, String patientIDstr, String pharmerIDstr){
-        boolean executed = false;
-
-        int drugID = APIDrug.getID(drugIDstr);
-        int patientID = APIDrug.getID(patientIDstr);
-        int pharmerID = APIDrug.getID(patientIDstr);
-
-        if (drugID == -1 || patientID == -1 || patientID == -1){
-            return false;
-        }
-
-
-        String sqlCmd = "insert into PRESCRITPIONS (drugid, patientsid, pharmerid) values (?,?,?)";
-        try {
-            PreparedStatement ps = APIMain.connection.prepareStatement(sqlCmd);
-            ps.setInt(1, drugID);
-            ps.setInt(2, patientID);
-            ps.setInt(3, pharmerID);
-            executed = ps.execute(); //returns a boolean
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return executed;
-    }
-
-
-
-
 
 }

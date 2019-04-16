@@ -68,6 +68,8 @@ public class APIMain {
         connectToDatabase();
         buildDatabase();
 
+        System.out.println(APIPrescription.addPrescription("Vicodin", "Rivers Cuomo"));
+
         primaryStage = new Stage();
 
         try {
@@ -112,45 +114,42 @@ public class APIMain {
     @SuppressWarnings("Dupilcates")
     private void buildDatabase(){
         // drugs
-        String drugs1 = "create table DRUGS (ID int generated always as identity, title varchar(255), description varchar(1000))";
-        String drugs2 = "create unique index DRUGS_ID_uindex on DRUGS (ID)";
-        String drugs3 = "alter table DRUGS add constraint drugs_id_pk primary key(ID)";
-        String drugs4 = "create unique index DRUGS_titlie_uindex on DRUGS (TITLE)";
+        String drugs1 = "create table DRUGS (title varchar(255) not NULL, description varchar(1000))";
+        String drugs2 = "create unique index DRUGS_TITLE_uindex on DRUGS (TITLE)";
+        String drugs3 = "alter table DRUGS add constraint drugs_title_pk primary key(TITLE)";
 
 
-        String PATIENTS1 = "create table PATIENTS (ID int generated always as identity, NAME varchar(255))";
-        String PATIENTS2 = "create unique index PATIENTS_ID_uindex on PATIENTS (ID)";
-        String PATIENTS3 = "alter table PATIENTS add constraint PATIENTS_id_pk primary key(ID)";
-        String PATIENTS4 = "create unique index PATIENTS_NAME_uindex on PATIENTS (NAME)";
+        String PATIENTS1 = "create table PATIENTS (NAME varchar(255) not null )";
+        String PATIENTS2 = "create unique index PATIENTS_NAME_uindex on PATIENTS (NAME)";
+        String PATIENTS3 = "alter table PATIENTS add constraint PATIENTS_NAME_pk primary key(NAME)";
 
 
-        String Pharmers1 = "create table Pharmers (ID int generated always as identity, name varchar(255), title varchar(255))";
-        String Pharmers2 = "create unique index Pharmers_ID_uindex on Pharmers (ID)";
-        String Pharmers3 = "alter table Pharmers add constraint Pharmers_id_pk primary key(ID)";
-        String Pharmers4 = "create unique index Pharmers_NAME_uindex on Pharmers (NAME)";
+//        String Pharmers1 = "create table Pharmers (ID int generated always as identity, name varchar(255), title varchar(255))";
+//        String Pharmers2 = "create unique index Pharmers_ID_uindex on Pharmers (ID)";
+//        String Pharmers3 = "alter table Pharmers add constraint Pharmers_id_pk primary key(ID)";
+//        String Pharmers4 = "create unique index Pharmers_NAME_uindex on Pharmers (NAME)";
 
-        String PRESCRITPIONS1 = "create table PRESCRITPIONS (ID int generated always as identity, DRUGID int constraint drugs_id_fk references drugs (ID), PATIENTSID int constraint PATIENTS_id_fk references PATIENTS (ID), PHARMERID int constraint pharmers_id_fk references pharmers (ID))";
+        String PRESCRITPIONS1 = "create table PRESCRITPIONS (ID int generated always as identity, DRUGID varchar(255) constraint drugs_title_fk references drugs (title), PATIENTSID varchar(255) constraint PATIENTS_NAME_fk references PATIENTS (NAME))";
         String PRESCRITPIONS2 = "create unique index PRESCRITPIONS_ID_uindex on PRESCRITPIONS (ID)";
         String PRESCRITPIONS3 = "alter table PRESCRITPIONS add constraint PRESCRITPIONS_id_pk primary key(ID)";
-
         try {
             Statement tableStmt = connection.createStatement();
             // create nodes and edges first
             tableStmt.executeUpdate(drugs1);
             tableStmt.executeUpdate(drugs2);
             tableStmt.executeUpdate(drugs3);
-            tableStmt.executeUpdate(drugs4);
+//            tableStmt.executeUpdate(drugs4);
 
 
             tableStmt.executeUpdate(PATIENTS1);
             tableStmt.executeUpdate(PATIENTS2);
             tableStmt.executeUpdate(PATIENTS3);
-            tableStmt.executeUpdate(PATIENTS4);
+//            tableStmt.executeUpdate(PATIENTS4);
 
-            tableStmt.executeUpdate(Pharmers1);
-            tableStmt.executeUpdate(Pharmers2);
-            tableStmt.executeUpdate(Pharmers3);
-            tableStmt.executeUpdate(Pharmers4);
+//            tableStmt.executeUpdate(Pharmers1);
+//            tableStmt.executeUpdate(Pharmers2);
+//            tableStmt.executeUpdate(Pharmers3);
+//            tableStmt.executeUpdate(Pharmers4);
 
             tableStmt.executeUpdate(PRESCRITPIONS1);
             tableStmt.executeUpdate(PRESCRITPIONS2);
@@ -246,45 +245,45 @@ public class APIMain {
             }
         }
 
-        System.out.println("Attempting to import staff...");
-        csvFile = getClass().getResource("/data/pharmers.csv");
-        br = null;
-        try {
-            br = new BufferedReader(new InputStreamReader(csvFile.openStream()));
-            br.readLine(); // throw away header
-            while ((line = br.readLine()) != null) {
-                String[] nodeData = line.split(cvsSplitBy); // split by comma
-                // get fields
-                String name = nodeData[0];
-                String title = nodeData[1];
-                // prepare the insert sql statement with room to insert variables
-                PreparedStatement ps = null;
-                String sqlCmd = "insert into PHARMERS (NAME, TITLE) values (?,?)";
-                try {
-                    ps = APIMain.connection.prepareStatement(sqlCmd);
-                    ps.setString(1, name);
-                    ps.setString(2, title);
-                    ps.execute();
-                } catch (SQLException e) {
-                    if (e.getSQLState().equals("23505")) { // duplicate key, update instead of insert
-                    } else {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (br != null) {
-                try {
-                    br.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
+//        System.out.println("Attempting to import staff...");
+//        csvFile = getClass().getResource("/data/pharmers.csv");
+//        br = null;
+//        try {
+//            br = new BufferedReader(new InputStreamReader(csvFile.openStream()));
+//            br.readLine(); // throw away header
+//            while ((line = br.readLine()) != null) {
+//                String[] nodeData = line.split(cvsSplitBy); // split by comma
+//                // get fields
+//                String name = nodeData[0];
+//                String title = nodeData[1];
+//                // prepare the insert sql statement with room to insert variables
+//                PreparedStatement ps = null;
+//                String sqlCmd = "insert into PHARMERS (NAME, TITLE) values (?,?)";
+//                try {
+//                    ps = APIMain.connection.prepareStatement(sqlCmd);
+//                    ps.setString(1, name);
+//                    ps.setString(2, title);
+//                    ps.execute();
+//                } catch (SQLException e) {
+//                    if (e.getSQLState().equals("23505")) { // duplicate key, update instead of insert
+//                    } else {
+//                        e.printStackTrace();
+//                    }
+//                }
+//            }
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } finally {
+//            if (br != null) {
+//                try {
+//                    br.close();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
 
 
 //        System.out.println(APIDrug.getID("Vicodin"));
