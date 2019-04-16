@@ -25,6 +25,11 @@ public class APIDrug {
         return description;
     }
 
+    @Override
+    public String toString(){
+        return title;
+    }
+
 //    public static ObservableList<APIDrug> getAllDrugs(){
 //        ObservableList<APIDrug> drugs = FXCollections.observableArrayList();
 //

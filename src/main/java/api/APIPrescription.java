@@ -1,7 +1,12 @@
 package api;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class APIPrescription {
     int drugID;
@@ -27,5 +32,26 @@ public class APIPrescription {
         }
         return executed;
     }
+
+    public static ObservableList<APIDrug> getAllDrugs(String name){
+        ObservableList<APIDrug> drugs = FXCollections.observableArrayList();
+
+        String sqlStmt;
+        sqlStmt = "SELECT * FROM PRESCRITPIONS WHERE PATIENTSID = '" + name + "'";
+        try {
+            Statement stmt = APIMain.connection.createStatement();
+            ResultSet rs = stmt.executeQuery(sqlStmt);
+            while (rs.next()) {
+                String title =  rs.getString("drugid");
+                String description =  rs.getString("drugdescription");
+                drugs.add(new APIDrug(title, description));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return drugs;
+    }
+
 
 }

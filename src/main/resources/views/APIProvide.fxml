@@ -5,7 +5,7 @@
 <?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import java.lang.String?>
-<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -32,20 +32,18 @@
                 <RowConstraints minHeight="100.0" prefHeight="100.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <JFXTextField fx:id="getPatientID" promptText="Patient Name">
+                  <JFXTextField fx:id="getPatientID" promptText="Enter Patient Name">
                      <font>
-                        <Font size="36.0" />
+                        <Font size="25.0" />
                      </font></JFXTextField>
-                   <JFXComboBox fx:id="drugName" promptText="Select Prescription" GridPane.columnIndex="1">
-                     <padding>
-                        <Insets left="30.0" top="40.0" />
-                     </padding></JFXComboBox>
-                   <JFXButton fx:id="submit" alignment="CENTER" defaultButton="true" prefHeight="57.0" prefWidth="240.0" stylesheets="@app.css" text="Submit" GridPane.columnIndex="2">
+                   <JFXButton fx:id="submit" alignment="CENTER" defaultButton="true" onAction="#submitButton" prefHeight="57.0" prefWidth="240.0" stylesheets="@app.css" text="Submit" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <styleClass>
                         <String fx:value="btn" />
                         <String fx:value="btn-success" />
+                        <String fx:value="btn-secondary" />
                      </styleClass>
                   </JFXButton>
+                   <JFXComboBox fx:id="drugName" promptText="Select Prescription" GridPane.columnIndex="2" />
                </children>
             </GridPane>
             <JFXTextArea fx:id="drugInstructions" prefHeight="522.0" prefWidth="1820.0" promptText="Instructions for prescription">
@@ -55,5 +53,10 @@
             </JFXTextArea>
          </children>
       </VBox>
+      <JFXButton fx:id="backButton" layoutY="1041.0" onAction="#backAction" styleClass="btn-danger" stylesheets="@app.css" text="Back" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="40.0">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </JFXButton>
    </children>
 </AnchorPane>

@@ -1,5 +1,7 @@
 package api;
 
+import base.EnumScreenType;
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
@@ -22,6 +24,8 @@ public class APIOrderController extends Controller implements Initializable {
     private JFXTextField drugTitle;
     @FXML
     Label error; // used to display errors
+    @FXML
+    JFXButton backButton;
 
     private ObservableList<APIDrug> drugs;
 
@@ -34,6 +38,7 @@ public class APIOrderController extends Controller implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         patientID.clear();
         prescriptionDescription.clear();
+        drugTitle.clear();
 //        drugs = APIDrug.getAllDrugs();
 //        drugType = new
 //        drugType.setOnAction(null);
@@ -44,6 +49,9 @@ public class APIOrderController extends Controller implements Initializable {
         String patientName = patientID.getText();
         String title = drugTitle.getText();
         String instructions = prescriptionDescription.getText();
+        error.setText("");
+
+
 
 
 
@@ -66,9 +74,16 @@ public class APIOrderController extends Controller implements Initializable {
 //            }
 //        });
 
+        if (patientName.equals("") || title.equals("") || instructions.equals("")){
+            error.setText("Error: All fields must be entered");
+            return;
+        }
 
         if (APIPatient.exists(patientName)){
             APIPrescription.addPrescription(title, instructions, patientName);
+            patientID.clear();
+            prescriptionDescription.clear();
+            drugTitle.clear();
         } else {
             error.setText("Error: " + patientName + " is not a patient");
         }
@@ -76,6 +91,10 @@ public class APIOrderController extends Controller implements Initializable {
 
 //        APIMain.screenController.setScreen(EnumScreenType.APIMain);
 
+    }
+
+    public void backAction(ActionEvent actionEvent){
+        APIMain.screenController.setScreen(EnumScreenType.APIMain);
     }
 
 }

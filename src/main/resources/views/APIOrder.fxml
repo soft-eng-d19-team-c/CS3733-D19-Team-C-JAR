@@ -89,5 +89,6 @@
                 <Image url="@../img/Perscriptions.png" />
             </image>
         </ImageView>
+      <JFXButton fx:id="backButton" onAction="#backAction" styleClass="btn-danger" stylesheets="@app.css" text="Button" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="40.0" />
     </children>
 </AnchorPane>
