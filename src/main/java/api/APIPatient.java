@@ -28,17 +28,17 @@ public class APIPatient {
         return executed;
     }
 
-    public static int getID(String name){
+    public static boolean exists(String name){
         String sqlStmt = "SELECT * FROM PATIENTS WHERE NAME = '" + name + "'";
         try {
             Statement stmt = APIMain.connection.createStatement();
             ResultSet rs = stmt.executeQuery(sqlStmt);
             if (rs.next()) {
-               return rs.getInt("ID");
+               return name.equals(rs.getString("Name"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return -1;
+        return false;
     }
 }

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import java.lang.String?>
@@ -17,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@app.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="api.APIOrderController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@app.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="api.APIOrderController">
     <children>
         <VBox alignment="CENTER" layoutX="140.0" layoutY="26.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="200.0">
             <children>
@@ -35,19 +34,29 @@
                 <RowConstraints minHeight="100.0" prefHeight="100.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <JFXTextField fx:id="patientID" promptText="Patient ID">
+                  <JFXTextField fx:id="patientID" prefWidth="611.0" promptText="Patient Name">
                      <font>
                         <Font size="36.0" />
-                     </font></JFXTextField>
-                   <JFXComboBox promptText="Type of Drug" GridPane.columnIndex="1" GridPane.valignment="CENTER" />
+                     </font>
+                     <padding>
+                        <Insets right="30.0" />
+                     </padding></JFXTextField>
+                  <JFXTextField fx:id="drugTitle" prefWidth="611.0" promptText="Prescription Name" GridPane.columnIndex="1">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                     <padding>
+                        <Insets left="30.0" right="50.0" />
+                     </padding>
+                  </JFXTextField>
                </children>
             </GridPane>
-                <JFXTextArea fx:id="prescriptionDescription" focusColor="#b82020" promptText="Prescription Description">
+                <JFXTextArea fx:id="prescriptionDescription" focusColor="#b82020" promptText="Prescription Instructions">
                     <font>
                         <Font size="40.0" />
                     </font>
                     <VBox.margin>
-                        <Insets left="20.0" right="20.0" />
+                        <Insets right="20.0" />
                     </VBox.margin>
                 </JFXTextArea>
                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
@@ -63,6 +72,11 @@
                                 <String fx:value="btn-lg" />
                             </styleClass>
                         </JFXButton>
+                  <Label fx:id="error">
+                     <padding>
+                        <Insets left="30.0" />
+                     </padding>
+                  </Label>
                     </children>
                     <VBox.margin>
                         <Insets top="50.0" />
@@ -70,7 +84,7 @@
                 </HBox>
             </children>
         </VBox>
-        <ImageView fitHeight="400.0" fitWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <ImageView fitHeight="230.0" fitWidth="227.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <image>
                 <Image url="@../img/Perscriptions.png" />
             </image>
