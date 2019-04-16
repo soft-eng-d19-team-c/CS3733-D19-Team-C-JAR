@@ -23,7 +23,7 @@ public class APIProvideController extends Controller implements Initializable {
     @FXML
     JFXComboBox drugName;
     @FXML
-    JFXTextArea drugDescription;
+    JFXTextArea drugInstructions;
 
 
 
@@ -35,7 +35,7 @@ public class APIProvideController extends Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        drugInstructions.setDisable(true);
     }
 
     public void submitButtonClick(ActionEvent actionEvent){
