@@ -36,7 +36,7 @@
                      <font>
                         <Font size="25.0" />
                      </font></JFXTextField>
-                   <JFXButton fx:id="submit" alignment="CENTER" defaultButton="true" onAction="#submitButton" prefHeight="57.0" prefWidth="240.0" stylesheets="@app.css" text="Submit" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                   <JFXButton fx:id="submit" alignment="CENTER" defaultButton="true" onAction="#submitButton" prefHeight="57.0" prefWidth="240.0" stylesheets="@appAPI.css" text="Submit" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <styleClass>
                         <String fx:value="btn-success" />
                         <String fx:value="btn" />
@@ -52,7 +52,7 @@
             </JFXTextArea>
          </children>
       </VBox>
-      <JFXButton fx:id="backButton" layoutY="1041.0" onAction="#backAction" styleClass="btn-danger" stylesheets="@app.css" text="Back" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="40.0">
+      <JFXButton fx:id="backButton" layoutY="1041.0" onAction="#backAction" styleClass="btn-danger" stylesheets="@appAPI.css" text="Back" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="40.0">
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor>

@@ -19,12 +19,12 @@
                   <Insets bottom="50.0" />
                </VBox.margin>
             </Label>
-            <JFXButton fx:id="orderButton" alignment="TOP_LEFT" onAction="#orderAction" styleClass="btn-primary" stylesheets="@app.css" text="Order Prescription">
+            <JFXButton fx:id="orderButton" alignment="TOP_LEFT" onAction="#orderAction" styleClass="btn-primary" stylesheets="@appAPI.css" text="Order Prescription">
                <font>
                   <Font size="24.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="provideButton" onAction="#provideAction" styleClass="btn-primary" stylesheets="@app.css" text="Provide Prescription">
+            <JFXButton fx:id="provideButton" onAction="#provideAction" styleClass="btn-primary" stylesheets="@appAPI.css" text="Provide Prescription">
                <font>
                   <Font size="24.0" />
                </font>
