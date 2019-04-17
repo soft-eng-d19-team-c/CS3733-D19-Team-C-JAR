@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="1080.0" prefWidth="1920.0" stylesheets="@default.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TeamC.controller.APIProvideController">
+<AnchorPane prefHeight="1080.0" prefWidth="1920.0" stylesheets="@default.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.APIProvideController">
    <children>
       <VBox alignment="TOP_CENTER" layoutX="224.0" layoutY="74.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
          <children>
@@ -38,9 +38,8 @@
                      </font></JFXTextField>
                    <JFXButton fx:id="submit" alignment="CENTER" defaultButton="true" onAction="#submitButton" prefHeight="57.0" prefWidth="240.0" stylesheets="@app.css" text="Submit" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <styleClass>
-                        <String fx:value="btn" />
                         <String fx:value="btn-success" />
-                        <String fx:value="btn-secondary" />
+                        <String fx:value="btn" />
                      </styleClass>
                   </JFXButton>
                    <JFXComboBox fx:id="drugName" promptText="Select Prescription" GridPane.columnIndex="2" />
