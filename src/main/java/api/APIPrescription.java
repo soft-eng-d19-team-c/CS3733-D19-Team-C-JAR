@@ -1,5 +1,6 @@
 package api;
 
+import base.APIMain;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -9,15 +10,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class APIPrescription {
-    int drugID;
-    int patientID;
-
-
-    public APIPrescription(int drugID, int patientID) {
-        this.drugID = drugID;
-        this.patientID = patientID;
-    }
-
     public static boolean addPrescription(String drugTitle, String instructions, String patientID){
         boolean executed = false;
         String sqlCmd = "insert into PRESCRITPIONS (DRUGID, DRUGDESCRIPTION, PATIENTSID ) values (?,?,?)";

@@ -1,11 +1,13 @@
-package api;
+package controller;
 
+import api.APIDrug;
+import api.APIPatient;
+import api.APIPrescription;
+import base.APIMain;
 import base.EnumScreenType;
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
-import controller.Controller;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -29,7 +31,6 @@ public class APIOrderController extends Controller implements Initializable {
 
     private ObservableList<APIDrug> drugs;
 
-    @Override
     public void init(URL location, ResourceBundle resources) {
         initialize(location, resources);
     }

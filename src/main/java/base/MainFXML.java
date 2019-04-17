@@ -1,12 +1,9 @@
 package base;
 
 import javafx.application.Application;
-import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 import java.io.IOException;
 
@@ -26,7 +23,7 @@ public class MainFXML extends Application {
         try {
             Scene scene = new Scene(FXMLLoader.load(getClass().getResource(EnumScreenType.APIMain.getPath())));
             s.setScene(scene);
-            Main.screenController = new Facade(s.getScene());
+            APIMain.screenController = new Facade(s.getScene());
             s.setTitle("BWH Navigation Kiosk");
             s.show();
         } catch (IOException e) {
