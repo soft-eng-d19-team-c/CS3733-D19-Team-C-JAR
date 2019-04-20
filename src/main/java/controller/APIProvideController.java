@@ -1,7 +1,8 @@
 package controller;
 
 
-import model.APIDrug;
+import javafx.scene.input.KeyEvent;
+import model.APIPrescription;
 import model.APIPrescription;
 import base.EnumScreenTypeAPI;
 import base.PrescriptionRequestAPI;
@@ -31,12 +32,16 @@ public class APIProvideController extends Controller implements Initializable {
     JFXTextArea drugInstructions;
     @FXML
     JFXButton backButton;
+    @FXML
+    JFXButton resolveButton;
 
-    private ObservableList<APIDrug> drugs;
+    private ObservableList<APIPrescription> drugs;
 
     public void init(URL location, ResourceBundle resources) {
         initialize(location, resources);
     }
+
+    APIPrescription selectedPrescription;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -44,6 +49,7 @@ public class APIProvideController extends Controller implements Initializable {
         getPatientID.clear();
         drugInstructions.clear();
         drugName.getSelectionModel().clearSelection();
+        resolveButton.setDisable(true);
 //        drugName.getItems.clear();
 
 //        drugType = new
@@ -51,22 +57,37 @@ public class APIProvideController extends Controller implements Initializable {
         drugName.valueProperty().addListener(new ChangeListener() {
             @Override
             public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-                APIDrug drug = (APIDrug) drugName.getValue();
-               drugInstructions.setText(drug.getDescription());
+                selectedPrescription = (APIPrescription) drugName.getValue();
                 drugInstructions.setDisable(false);
+                if (selectedPrescription != null) {
+                    drugInstructions.setText(selectedPrescription.getDescription());
+                    resolveButton.setDisable(false);
+                }
+
             }
         });
 
     }
 
-    public void submitButton(ActionEvent actionEvent){
-        String patientID = getPatientID.getText();
-        drugs = APIPrescription.getAllDrugs(patientID);
-        drugName.setItems(drugs);
+    public void disableResolve(KeyEvent keyEvent){
+        resolveButton.setDisable(true);
     }
 
-    public void backAction(ActionEvent actionEvent){
+    public void submitButton(ActionEvent actionEvent) {
+        drugInstructions.clear();
+        String patientID = getPatientID.getText();
+        drugs = APIPrescription.getCurrentPrescriptions(patientID);
+        if (drugs != null) {
+            drugName.setItems(drugs);
+        }
+    }
+
+    public void backAction(ActionEvent actionEvent) {
         PrescriptionRequestAPI.screenController.setScreen(EnumScreenTypeAPI.APIMain);
+    }
+
+    public void resolveAction(ActionEvent actionEvent) {
+        selectedPrescription.resolve();
     }
 
 

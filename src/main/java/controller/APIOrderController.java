@@ -1,7 +1,7 @@
 package controller;
 
 import javafx.scene.text.Text;
-import model.APIDrug;
+import model.APIPrescription;
 import model.APIPatient;
 import model.APIPrescription;
 import base.PrescriptionRequestAPI;
@@ -30,7 +30,8 @@ public class APIOrderController extends Controller implements Initializable {
     @FXML
     JFXButton backButton;
 
-    private ObservableList<APIDrug> drugs;
+
+    private ObservableList<APIPrescription> drugs;
 
     public void init(URL location, ResourceBundle resources) {
         initialize(location, resources);
@@ -41,7 +42,7 @@ public class APIOrderController extends Controller implements Initializable {
         patientID.clear();
         prescriptionDescription.clear();
         drugTitle.clear();
-//        drugs = APIDrug.getAllDrugs();
+//        drugs = APIPrescription.getCurrentPrescriptions();
 //        drugType = new
 //        drugType.setOnAction(null);
 //        drugType.setItems(drugs);
@@ -76,5 +77,9 @@ public class APIOrderController extends Controller implements Initializable {
     public void backAction(ActionEvent actionEvent){
         PrescriptionRequestAPI.screenController.setScreen(EnumScreenTypeAPI.APIMain);
     }
+
+
+
+
 
 }

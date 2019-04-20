@@ -94,12 +94,11 @@ public class PrescriptionRequestAPI extends Application {
 
     @SuppressWarnings("Dupilcates")
     private void buildDatabase(){
-        boolean builtDatabase = false;
         String PATIENTS1 = "create table PATIENTS (ID varchar(255) not null, NAME varchar(255), AGE int, SEX VARCHAR(255))";
         String PATIENTS2 = "create unique index PATIENTS_NAME_uindex on PATIENTS (ID)";
         String PATIENTS3 = "alter table PATIENTS add constraint PATIENTS_ID_pk primary key(ID)";
 
-        String PRESCRITPIONS1 = "create table PRESCRITPIONS (ID int generated always as identity, DRUGID varchar(255), DRUGDESCRIPTION varchar(1000), PATIENTSID varchar(255) constraint PATIENTS_ID_fk references PATIENTS (ID))";
+        String PRESCRITPIONS1 = "create table PRESCRITPIONS (ID int generated always as identity, DRUGID varchar(255), DRUGDESCRIPTION varchar(1000), PATIENTSID varchar(255) constraint PATIENTS_ID_fk references PATIENTS (ID), RESOLVED boolean)";
         String PRESCRITPIONS2 = "create unique index PRESCRITPIONS_ID_uindex on PRESCRITPIONS (ID)";
         String PRESCRITPIONS3 = "alter table PRESCRITPIONS add constraint PRESCRITPIONS_id_pk primary key(ID)";
         try {
@@ -113,8 +112,6 @@ public class PrescriptionRequestAPI extends Application {
             tableStmt.executeUpdate(PRESCRITPIONS2);
             tableStmt.executeUpdate(PRESCRITPIONS3);
 
-           builtDatabase = true;
-
         } catch (SQLException e) {
             if (e.getSQLState().equals("X0Y32")) {
                 // table exists
@@ -123,49 +120,6 @@ public class PrescriptionRequestAPI extends Application {
                 e.printStackTrace();
             }
         }
-
-//        System.out.println("Attempting to import patients...");
-//        URL csvFile = getClass().getResource("/data/patients.csv");
-//        BufferedReader br = null;
-//        String line;
-//        String cvsSplitBy = ",";
-//        try {
-//            br = new BufferedReader(new InputStreamReader(csvFile.openStream()));
-//            br.readLine(); // throw away header
-//            while ((line = br.readLine()) != null) {
-//                String[] nodeData = line.split(cvsSplitBy); // split by comma
-//                // get fields
-//                String name = nodeData[0];
-//                // prepare the insert sql statement with room to insert variables
-//                PreparedStatement ps = null;
-//                String sqlCmd = "insert into Patients (Name) values (?)";
-//                try {
-//                    ps = PrescriptionRequestAPI.connection.prepareStatement(sqlCmd);
-//                    ps.setString(1, name);
-//                    ps.execute();
-//                } catch (SQLException e) {
-//                    if (e.getSQLState().equals("23505")) { // duplicate key, update instead of insert
-//                    } else {
-//                        e.printStackTrace();
-//                    }
-//                }
-//            }
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        } finally {
-//            if (br != null) {
-//                try {
-//                    br.close();
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }
-
-
-
     }
 
 

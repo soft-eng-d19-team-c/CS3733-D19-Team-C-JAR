@@ -32,7 +32,7 @@
                 <RowConstraints minHeight="100.0" prefHeight="100.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <JFXTextField fx:id="getPatientID" promptText="Enter Patient Name">
+                  <JFXTextField fx:id="getPatientID" onKeyPressed="#disableResolve" promptText="Enter Patient's ID">
                      <font>
                         <Font size="25.0" />
                      </font></JFXTextField>
@@ -56,6 +56,12 @@
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor>
+      </JFXButton>
+      <JFXButton fx:id="resolveButton" onAction="#resolveAction" stylesheets="@appAPI.css" text="Resolve" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0">
+         <styleClass>
+            <String fx:value="btn-primary" />
+            <String fx:value="btn-lg" />
+         </styleClass>
       </JFXButton>
    </children>
 </AnchorPane>
