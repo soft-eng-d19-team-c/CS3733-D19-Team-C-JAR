@@ -1,11 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.lang.String?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="api.APIProvideController">
+<AnchorPane prefHeight="1080.0" prefWidth="1920.0" stylesheets="@default.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.APIProvideController">
    <children>
-      <Label layoutX="288.0" layoutY="154.0" text="Provide" />
+      <VBox alignment="TOP_CENTER" layoutX="224.0" layoutY="74.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+         <children>
+            <Label alignment="CENTER" text="Provide a Prescription" textAlignment="CENTER">
+               <font>
+                  <Font size="70.0" />
+               </font></Label>
+            <GridPane>
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="100.0" prefHeight="100.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <JFXTextField fx:id="getPatientID" onKeyPressed="#disableResolve" promptText="Enter Patient's ID">
+                     <font>
+                        <Font size="25.0" />
+                     </font></JFXTextField>
+                   <JFXButton fx:id="submit" alignment="CENTER" defaultButton="true" onAction="#submitButton" prefHeight="57.0" prefWidth="240.0" stylesheets="@appAPI.css" text="Submit" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <styleClass>
+                        <String fx:value="btn-success" />
+                        <String fx:value="btn" />
+                     </styleClass>
+                  </JFXButton>
+                   <JFXComboBox fx:id="drugName" promptText="Select Prescription" GridPane.columnIndex="2" />
+               </children>
+            </GridPane>
+            <JFXTextArea fx:id="drugInstructions" prefHeight="522.0" prefWidth="1820.0" promptText="Instructions for prescription">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </JFXTextArea>
+         </children>
+      </VBox>
+      <JFXButton fx:id="backButton" layoutY="1041.0" onAction="#backAction" styleClass="btn-danger" stylesheets="@appAPI.css" text="Back" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="40.0">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="resolveButton" onAction="#resolveAction" stylesheets="@appAPI.css" text="Resolve" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0">
+         <styleClass>
+            <String fx:value="btn-primary" />
+            <String fx:value="btn-lg" />
+         </styleClass>
+      </JFXButton>
    </children>
 </AnchorPane>
