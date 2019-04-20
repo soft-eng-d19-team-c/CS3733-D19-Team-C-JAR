@@ -1,4 +1,4 @@
-package api;
+package controller;
 
 import base.PrescriptionRequestAPI;
 import base.EnumScreenTypeAPI;
@@ -27,7 +27,12 @@ public class PrescriptionServiceAPIController extends Controller implements Init
 
     public void provideAction(ActionEvent actionEvent){
         PrescriptionRequestAPI.screenController.setScreen(EnumScreenTypeAPI.APIProvide);
-
     }
+
+    public void addPatientAction(ActionEvent actionEvent){
+        PrescriptionRequestAPI.screenController.setScreen(EnumScreenTypeAPI.APIAddPatient);
+    }
+
+
 
 }

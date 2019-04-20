@@ -1,4 +1,4 @@
-package api;
+package model;
 
 public class ServiceException extends Exception{
     public ServiceException(String message){

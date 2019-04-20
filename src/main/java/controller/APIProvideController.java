@@ -1,8 +1,8 @@
 package controller;
 
 
-import api.APIDrug;
-import api.APIPrescription;
+import model.APIDrug;
+import model.APIPrescription;
 import base.EnumScreenTypeAPI;
 import base.PrescriptionRequestAPI;
 import com.jfoenix.controls.JFXButton;

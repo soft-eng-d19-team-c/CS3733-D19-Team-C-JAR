@@ -1,4 +1,4 @@
-package api;
+package model;
 
 import base.PrescriptionRequestAPI;
 import javafx.collections.FXCollections;

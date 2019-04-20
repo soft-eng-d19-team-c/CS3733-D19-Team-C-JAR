@@ -1,4 +1,4 @@
-package api;
+package model;
 
 import base.PrescriptionRequestAPI;
 
@@ -10,13 +10,16 @@ import java.sql.Statement;
 import static java.lang.Integer.parseInt;
 
 public class APIPatient {
-    public boolean addPatient(String name) {
+    public static boolean addPatient(String ID, String name, int age, String sex) {
         boolean executed = false;
 
-        String sqlCmd = "insert into PATIENTS (NAME) values (?)";
+        String sqlCmd = "insert into PATIENTS (ID, NAME, AGE, SEX) values (?,?,?,?)";
         try {
             PreparedStatement ps = PrescriptionRequestAPI.connection.prepareStatement(sqlCmd);
-            ps.setString(1, name);
+            ps.setString(1, ID);
+            ps.setString(2, name);
+            ps.setInt(3, age);
+            ps.setString(4, sex);
             executed = ps.execute(); //returns a boolean
         } catch (SQLException e) {
             e.printStackTrace();
@@ -25,17 +28,19 @@ public class APIPatient {
         return executed;
     }
 
-    public static boolean exists(String name){
-        String sqlStmt = "SELECT * FROM PATIENTS WHERE NAME = '" + name + "'";
+    public static boolean exists(String ID){
+        String sqlStmt = "SELECT * FROM PATIENTS WHERE NAME = '" + ID + "'";
         try {
             Statement stmt = PrescriptionRequestAPI.connection.createStatement();
             ResultSet rs = stmt.executeQuery(sqlStmt);
             if (rs.next()) {
-               return name.equals(rs.getString("Name"));
+               return ID.equals(rs.getString("ID"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return false;
     }
+
+
 }

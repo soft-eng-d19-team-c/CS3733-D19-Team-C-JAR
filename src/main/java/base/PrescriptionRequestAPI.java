@@ -1,7 +1,7 @@
 package base;
 
-import api.APIPrescription;
-import api.ServiceException;
+import model.APIPrescription;
+import model.ServiceException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -95,7 +95,7 @@ public class PrescriptionRequestAPI extends Application {
     @SuppressWarnings("Dupilcates")
     private void buildDatabase(){
         boolean builtDatabase = false;
-        String PATIENTS1 = "create table PATIENTS (NAME varchar(255) not null )";
+        String PATIENTS1 = "create table PATIENTS (ID varchar(255) not null, NAME varchar(255), AGE int, SEX VARCHAR(255))";
         String PATIENTS2 = "create unique index PATIENTS_NAME_uindex on PATIENTS (NAME)";
         String PATIENTS3 = "alter table PATIENTS add constraint PATIENTS_NAME_pk primary key(NAME)";
 
@@ -124,45 +124,45 @@ public class PrescriptionRequestAPI extends Application {
             }
         }
 
-        System.out.println("Attempting to import patients...");
-        URL csvFile = getClass().getResource("/data/patients.csv");
-        BufferedReader br = null;
-        String line;
-        String cvsSplitBy = ",";
-        try {
-            br = new BufferedReader(new InputStreamReader(csvFile.openStream()));
-            br.readLine(); // throw away header
-            while ((line = br.readLine()) != null) {
-                String[] nodeData = line.split(cvsSplitBy); // split by comma
-                // get fields
-                String name = nodeData[0];
-                // prepare the insert sql statement with room to insert variables
-                PreparedStatement ps = null;
-                String sqlCmd = "insert into Patients (Name) values (?)";
-                try {
-                    ps = PrescriptionRequestAPI.connection.prepareStatement(sqlCmd);
-                    ps.setString(1, name);
-                    ps.execute();
-                } catch (SQLException e) {
-                    if (e.getSQLState().equals("23505")) { // duplicate key, update instead of insert
-                    } else {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (br != null) {
-                try {
-                    br.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
+//        System.out.println("Attempting to import patients...");
+//        URL csvFile = getClass().getResource("/data/patients.csv");
+//        BufferedReader br = null;
+//        String line;
+//        String cvsSplitBy = ",";
+//        try {
+//            br = new BufferedReader(new InputStreamReader(csvFile.openStream()));
+//            br.readLine(); // throw away header
+//            while ((line = br.readLine()) != null) {
+//                String[] nodeData = line.split(cvsSplitBy); // split by comma
+//                // get fields
+//                String name = nodeData[0];
+//                // prepare the insert sql statement with room to insert variables
+//                PreparedStatement ps = null;
+//                String sqlCmd = "insert into Patients (Name) values (?)";
+//                try {
+//                    ps = PrescriptionRequestAPI.connection.prepareStatement(sqlCmd);
+//                    ps.setString(1, name);
+//                    ps.execute();
+//                } catch (SQLException e) {
+//                    if (e.getSQLState().equals("23505")) { // duplicate key, update instead of insert
+//                    } else {
+//                        e.printStackTrace();
+//                    }
+//                }
+//            }
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } finally {
+//            if (br != null) {
+//                try {
+//                    br.close();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
 
         if (builtDatabase) {
             APIPrescription.addPrescription("Advil", "Take 600mg four times a day", "Rivers Cuomo");
