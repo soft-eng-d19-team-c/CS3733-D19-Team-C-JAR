@@ -29,7 +29,7 @@ public class APIPatient {
     }
 
     public static boolean exists(String ID){
-        String sqlStmt = "SELECT * FROM PATIENTS WHERE NAME = '" + ID + "'";
+        String sqlStmt = "SELECT * FROM PATIENTS WHERE ID = '" + ID + "'";
         try {
             Statement stmt = PrescriptionRequestAPI.connection.createStatement();
             ResultSet rs = stmt.executeQuery(sqlStmt);

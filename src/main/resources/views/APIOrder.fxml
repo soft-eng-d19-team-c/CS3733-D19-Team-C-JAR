@@ -33,7 +33,7 @@
                 <RowConstraints minHeight="100.0" prefHeight="100.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <JFXTextField fx:id="patientID" prefWidth="611.0" promptText="Patient Name">
+                  <JFXTextField fx:id="patientID" prefWidth="611.0" promptText="Patient ID">
                      <font>
                         <Font size="36.0" />
                      </font>

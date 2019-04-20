@@ -48,46 +48,24 @@ public class APIOrderController extends Controller implements Initializable {
     }
 
     public void submitButtonClick(ActionEvent actionEvent) {
-        String patientName = patientID.getText();
+        String patientIDText = patientID.getText();
         String title = drugTitle.getText();
         String instructions = prescriptionDescription.getText();
         error.setText("");
+        
 
-
-
-
-
-
-//        floorsMenu.setItems(differentFloors);
-//        floorsMenu.setValue(currentFloor);
-//        floorsMenu.setOnAction((event) -> {
-//            nodeCircles.clear();
-//            currentFloor = floorsMenu.getSelectionModel().getSelectedItem();
-//            if (currentFloor.equals("G")) {
-//                mapImg.setImage(new Image(String.valueOf(getClass().getResource("/img/00_thegroundfloor.png"))));
-//            } else {
-//                mapImg.setImage(new Image(String.valueOf(getClass().getResource("/img/" + currentFloor + "_NoIcons.png"))));
-//            }
-//            nodes = Node.getNodesByFloor(currentFloor);
-//            edges = Edge.getEdgesByFloor(currentFloor);
-//            drawNodes();
-//            if (addEdgeHandler_on) {
-//                addPathButtonClick(new ActionEvent());
-//            }
-//        });
-
-        if (patientName.equals("") || title.equals("") || instructions.equals("")){
+        if (patientIDText.equals("") || title.equals("") || instructions.equals("")){
             error.setText("Error: All fields must be entered");
             return;
         }
 
-        if (APIPatient.exists(patientName)){
-            APIPrescription.addPrescription(title, instructions, patientName);
+        if (APIPatient.exists(patientIDText)){
+            APIPrescription.addPrescription(title, instructions, patientIDText);
             patientID.clear();
             prescriptionDescription.clear();
             drugTitle.clear();
         } else {
-            error.setText("Error: " + patientName + " is not a patient");
+            error.setText("Error: " + patientIDText + " is not a valid ID");
         }
 
 

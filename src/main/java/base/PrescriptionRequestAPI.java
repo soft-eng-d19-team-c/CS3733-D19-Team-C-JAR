@@ -96,10 +96,10 @@ public class PrescriptionRequestAPI extends Application {
     private void buildDatabase(){
         boolean builtDatabase = false;
         String PATIENTS1 = "create table PATIENTS (ID varchar(255) not null, NAME varchar(255), AGE int, SEX VARCHAR(255))";
-        String PATIENTS2 = "create unique index PATIENTS_NAME_uindex on PATIENTS (NAME)";
-        String PATIENTS3 = "alter table PATIENTS add constraint PATIENTS_NAME_pk primary key(NAME)";
+        String PATIENTS2 = "create unique index PATIENTS_NAME_uindex on PATIENTS (ID)";
+        String PATIENTS3 = "alter table PATIENTS add constraint PATIENTS_ID_pk primary key(ID)";
 
-        String PRESCRITPIONS1 = "create table PRESCRITPIONS (ID int generated always as identity, DRUGID varchar(255), DRUGDESCRIPTION varchar(1000), PATIENTSID varchar(255) constraint PATIENTS_NAME_fk references PATIENTS (NAME))";
+        String PRESCRITPIONS1 = "create table PRESCRITPIONS (ID int generated always as identity, DRUGID varchar(255), DRUGDESCRIPTION varchar(1000), PATIENTSID varchar(255) constraint PATIENTS_ID_fk references PATIENTS (ID))";
         String PRESCRITPIONS2 = "create unique index PRESCRITPIONS_ID_uindex on PRESCRITPIONS (ID)";
         String PRESCRITPIONS3 = "alter table PRESCRITPIONS add constraint PRESCRITPIONS_id_pk primary key(ID)";
         try {
@@ -164,11 +164,6 @@ public class PrescriptionRequestAPI extends Application {
 //            }
 //        }
 
-        if (builtDatabase) {
-            APIPrescription.addPrescription("Advil", "Take 600mg four times a day", "Rivers Cuomo");
-            APIPrescription.addPrescription("Advil", "Take 400mg four times a day", "Matt Sharp");
-            APIPrescription.addPrescription("Advil", "Take 400mg four times a day", "Scott Shriner");
-        }
 
 
     }

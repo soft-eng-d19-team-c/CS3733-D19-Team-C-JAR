@@ -25,11 +25,11 @@ public class APIPrescription {
         return executed;
     }
 
-    public static ObservableList<APIDrug> getAllDrugs(String name){
+    public static ObservableList<APIDrug> getAllDrugs(String ID){
         ObservableList<APIDrug> drugs = FXCollections.observableArrayList();
 
         String sqlStmt;
-        sqlStmt = "SELECT * FROM PRESCRITPIONS WHERE PATIENTSID = '" + name + "'";
+        sqlStmt = "SELECT * FROM PRESCRITPIONS WHERE PATIENTSID = '" + ID + "'";
         try {
             Statement stmt = PrescriptionRequestAPI.connection.createStatement();
             ResultSet rs = stmt.executeQuery(sqlStmt);
