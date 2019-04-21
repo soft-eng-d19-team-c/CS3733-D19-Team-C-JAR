@@ -63,7 +63,6 @@ public class APIProvideController extends Controller implements Initializable {
                     drugInstructions.setText(selectedPrescription.getDescription());
                     resolveButton.setDisable(false);
                 }
-
             }
         });
 
@@ -73,7 +72,7 @@ public class APIProvideController extends Controller implements Initializable {
         resolveButton.setDisable(true);
     }
 
-    public void submitButton(ActionEvent actionEvent) {
+    public void checkPatient(KeyEvent keyEvent){
         drugInstructions.clear();
         String patientID = getPatientID.getText();
         drugs = APIPrescription.getCurrentPrescriptions(patientID);
@@ -82,12 +81,36 @@ public class APIProvideController extends Controller implements Initializable {
         }
     }
 
+//    public void submitButton(ActionEvent actionEvent) {
+//        drugInstructions.clear();
+//        String patientID = getPatientID.getText();
+//        drugs = APIPrescription.getCurrentPrescriptions(patientID);
+//        if (drugs != null) {
+//            drugName.setItems(drugs);
+//        }
+//    }
+
     public void backAction(ActionEvent actionEvent) {
         PrescriptionRequestAPI.screenController.setScreen(EnumScreenTypeAPI.APIMain);
     }
 
     public void resolveAction(ActionEvent actionEvent) {
         selectedPrescription.resolve();
+        drugInstructions.clear();
+//        getPatientID.clear();
+        drugName.getSelectionModel().clearSelection();
+        resolveButton.setDisable(true);
+        updateComboBox();
+
+    }
+
+    public void updateComboBox(){
+        drugInstructions.clear();
+        String patientID = getPatientID.getText();
+        drugs = APIPrescription.getCurrentPrescriptions(patientID);
+        if (drugs != null) {
+            drugName.setItems(drugs);
+        }
     }
 
 

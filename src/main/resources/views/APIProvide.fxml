@@ -32,17 +32,11 @@
                 <RowConstraints minHeight="100.0" prefHeight="100.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <JFXTextField fx:id="getPatientID" onKeyPressed="#disableResolve" promptText="Enter Patient's ID">
+                  <JFXTextField fx:id="getPatientID" onKeyPressed="#disableResolve" onKeyReleased="#checkPatient" promptText="Enter Patient's ID">
                      <font>
                         <Font size="25.0" />
                      </font></JFXTextField>
-                   <JFXButton fx:id="submit" alignment="CENTER" defaultButton="true" onAction="#submitButton" prefHeight="57.0" prefWidth="240.0" stylesheets="@appAPI.css" text="Submit" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                     <styleClass>
-                        <String fx:value="btn-success" />
-                        <String fx:value="btn" />
-                     </styleClass>
-                  </JFXButton>
-                   <JFXComboBox fx:id="drugName" promptText="Select Prescription" GridPane.columnIndex="2" />
+                   <JFXComboBox fx:id="drugName" promptText="Select Prescription" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
                </children>
             </GridPane>
             <JFXTextArea fx:id="drugInstructions" prefHeight="522.0" prefWidth="1820.0" promptText="Instructions for prescription">

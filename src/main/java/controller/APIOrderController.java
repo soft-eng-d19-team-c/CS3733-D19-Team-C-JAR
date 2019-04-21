@@ -62,7 +62,7 @@ public class APIOrderController extends Controller implements Initializable {
 
         if (APIPatient.exists(patientIDText)){
             APIPrescription.addPrescription(title, instructions, patientIDText);
-            patientID.clear();
+//            patientID.clear();
             prescriptionDescription.clear();
             drugTitle.clear();
         } else {
