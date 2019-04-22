@@ -73,12 +73,7 @@ public class APIProvideController extends Controller implements Initializable {
     }
 
     public void checkPatient(KeyEvent keyEvent){
-        drugInstructions.clear();
-        String patientID = getPatientID.getText();
-        drugs = APIPrescription.getCurrentPrescriptions(patientID);
-        if (drugs != null) {
-            drugName.setItems(drugs);
-        }
+        updateComboBox();
     }
 
 //    public void submitButton(ActionEvent actionEvent) {

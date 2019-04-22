@@ -3,7 +3,6 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTextField?>
-<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
@@ -15,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@appAPI.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.APIOrderController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@default.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.APIOrderController">
     <children>
         <VBox alignment="CENTER" layoutX="140.0" layoutY="26.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="200.0">
             <children>
@@ -24,7 +23,7 @@
                         <Font size="70.0" />
                     </font>
                 </Label>
-            <GridPane alignment="CENTER_LEFT" prefHeight="76.0" prefWidth="1720.0">
+            <GridPane alignment="CENTER_LEFT" prefHeight="76.0" prefWidth="1720.0" stylesheets="@default.css">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -33,14 +32,14 @@
                 <RowConstraints minHeight="100.0" prefHeight="100.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <JFXTextField fx:id="patientID" prefWidth="611.0" promptText="Patient ID">
+                  <JFXTextField fx:id="patientID" prefWidth="611.0" promptText="Patient ID" styleClass="jfx-text-field" stylesheets="@default.css">
                      <font>
                         <Font size="36.0" />
                      </font>
                      <GridPane.margin>
                         <Insets left="10.0" right="10.0" />
                      </GridPane.margin></JFXTextField>
-                  <JFXTextField fx:id="drugTitle" prefWidth="611.0" promptText="Prescription Name" GridPane.columnIndex="1">
+                  <JFXTextField fx:id="drugTitle" prefWidth="611.0" promptText="Prescription Name" styleClass="jfx-text-field" stylesheets="@default.css" GridPane.columnIndex="1">
                      <font>
                         <Font size="36.0" />
                      </font>
@@ -50,7 +49,7 @@
                   </JFXTextField>
                </children>
             </GridPane>
-                <JFXTextArea fx:id="prescriptionDescription" focusColor="#b82020" promptText="Prescription Instructions">
+                <JFXTextArea fx:id="prescriptionDescription" focusColor="#b82020" promptText="Prescription Instructions" styleClass="jfx-text-area" stylesheets="@default.css">
                     <font>
                         <Font size="40.0" />
                     </font>
@@ -61,15 +60,10 @@
                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                     <children>
                         <VBox prefHeight="200.0" prefWidth="100.0" />
-                        <JFXButton fx:id="submitButton" alignment="CENTER" buttonType="RAISED" onAction="#submitButtonClick" text="Submit" textAlignment="CENTER">
+                        <JFXButton fx:id="submitButton" alignment="CENTER" buttonType="RAISED" onAction="#submitButtonClick" styleClass="jfx-button" stylesheets="@default.css" text="Submit" textAlignment="CENTER">
                             <font>
                                 <Font size="36.0" />
                             </font>
-                            <styleClass>
-                                <String fx:value="btn" />
-                                <String fx:value="btn-success" />
-                                <String fx:value="btn-lg" />
-                            </styleClass>
                         </JFXButton>
                   <Label fx:id="error">
                      <padding>
@@ -85,6 +79,6 @@
         </VBox>
         <ImageView fitHeight="230.0" fitWidth="227.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
         </ImageView>
-      <JFXButton fx:id="backButton" onAction="#backAction" styleClass="btn-danger" stylesheets="@appAPI.css" text="Back" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="40.0" />
+      <JFXButton fx:id="backButton" onAction="#backAction" styleClass="jfx-button" stylesheets="@default.css" text="Back" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="40.0" />
     </children>
 </AnchorPane>
